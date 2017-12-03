@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import projects from './projects';
 import css from '../css/style.css';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -28,22 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         key={this.props.i}
         style={divStyle}
         className={`${this.state.open || "open-active open"}  panel`}>
-        <h3>{this.props.name}
+        <h3>{this.props.tags}
         </h3>
-        <div className="info">
-          <p>
-            <b>Location:</b>
-            {this.props.location}</p>
-          <p>
-            <b>Year:</b>
-            {this.props.year}</p>
-          <p>
-            <b>Architect:</b>
-            {this.props.architect}</p>
-          <p>
-            <b>Main contractor:</b>
-            {this.props.contractor}</p>
-        </div>
       </div>
     }
   }
@@ -58,17 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 componentDidMount(){
 
-        let url = "https://pixabay.com/api/?key=7194261-cb5353e414e4d782b7a39e798&q=wroclaw&image_type=photo"
+        let url = "https://pixabay.com/api/?key=7194261-cb5353e414e4d782b7a39e798&q=cat&image_type=photo"
         fetch(url)
         .then(r => r.json())
         .then(r => this.setState({
           pics: r.hits
         }))
-        .then(console.log('fetched'))
+        //.then(console.log('fetched'))
 }
 
     scroll = () => {
-      console.log(this.state.pic);
+      //console.log(this.state.pic);
 
       this.setState({
         pic:this.state.pic > 17 ? 0: this.state.pic+.05
@@ -78,15 +63,15 @@ componentDidMount(){
 
     render() {
 
-      {Object.keys(this.state.pics).length == 0 ||
-
-          this.state.pics.map((el, i) => console.log(el))
-
-      }
+      // {Object.keys(this.state.pics).length == 0 ||
+      //
+      //     this.state.pics.map((el, i) => console.log(el))
+      //
+      // }
       return (<div onWheel={this.scroll} className="panels">
         {Object.keys(this.state.pics).length == 0 ||
-          this.state.pics.map((el, i) => (i>=this.state.pic && i<this.state.pic+3) &&
-          <Project key={i} i={i} url={el.webformatURL} name={el.tags} location={el.tags} year={el.tags} architect={el.tags} contractor={el.tags}/>
+          this.state.pics.map((el, i) => (i>=this.state.pic && i<this.state.pic+5) &&
+          <Project key={i} i={i} url={el.webformatURL} tags={el.tags} />
         )}
       </div>);
     }

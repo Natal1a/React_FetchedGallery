@@ -9600,11 +9600,7 @@ var _reactDom = __webpack_require__(98);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _projects = __webpack_require__(184);
-
-var _projects2 = _interopRequireDefault(_projects);
-
-var _style = __webpack_require__(185);
+var _style = __webpack_require__(184);
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -9653,51 +9649,7 @@ document.addEventListener('DOMContentLoaded', function () {
           _react2.default.createElement(
             'h3',
             null,
-            this.props.name
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'info' },
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                'b',
-                null,
-                'Location:'
-              ),
-              this.props.location
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                'b',
-                null,
-                'Year:'
-              ),
-              this.props.year
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                'b',
-                null,
-                'Architect:'
-              ),
-              this.props.architect
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              _react2.default.createElement(
-                'b',
-                null,
-                'Main contractor:'
-              ),
-              this.props.contractor
-            )
+            this.props.tags
           )
         );
       }
@@ -9715,7 +9667,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var _this2 = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).call(this, props));
 
       _this2.scroll = function () {
-        console.log(_this2.state.pic);
+        //console.log(this.state.pic);
 
         _this2.setState({
           pic: _this2.state.pic > 17 ? 0 : _this2.state.pic + .05
@@ -9735,30 +9687,31 @@ document.addEventListener('DOMContentLoaded', function () {
       value: function componentDidMount() {
         var _this3 = this;
 
-        var url = "https://pixabay.com/api/?key=7194261-cb5353e414e4d782b7a39e798&q=wroclaw&image_type=photo";
+        var url = "https://pixabay.com/api/?key=7194261-cb5353e414e4d782b7a39e798&q=cat&image_type=photo";
         fetch(url).then(function (r) {
           return r.json();
         }).then(function (r) {
           return _this3.setState({
             pics: r.hits
           });
-        }).then(console.log('fetched'));
+        });
+        //.then(console.log('fetched'))
       }
     }, {
       key: 'render',
       value: function render() {
         var _this4 = this;
 
-        {
-          Object.keys(this.state.pics).length == 0 || this.state.pics.map(function (el, i) {
-            return console.log(el);
-          });
-        }
+        // {Object.keys(this.state.pics).length == 0 ||
+        //
+        //     this.state.pics.map((el, i) => console.log(el))
+        //
+        // }
         return _react2.default.createElement(
           'div',
           { onWheel: this.scroll, className: 'panels' },
           Object.keys(this.state.pics).length == 0 || this.state.pics.map(function (el, i) {
-            return i >= _this4.state.pic && i < _this4.state.pic + 3 && _react2.default.createElement(Project, { key: i, i: i, url: el.webformatURL, name: el.tags, location: el.tags, year: el.tags, architect: el.tags, contractor: el.tags });
+            return i >= _this4.state.pic && i < _this4.state.pic + 5 && _react2.default.createElement(Project, { key: i, i: i, url: el.webformatURL, tags: el.tags });
           })
         );
       }
@@ -22264,64 +22217,20 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 184 */
-/***/ (function(module, exports) {
-
-module.exports = [
-  {
-    project: 'Victoria Nova - Building 5',
-    year: 2014,
-    location: 'London',
-    architect: 'Orms',
-    contractor: 'Mace',
-    image: 'http://www.emstone.pl/userfiles/slider/1460624536.jpg'
-  }, {
-    project: 'Tate Britain',
-    year: 2013,
-    location: 'London',
-    architect: 'Caruso St. John',
-    contractor: 'McGee',
-    image: 'http://www.emstone.pl/userfiles/slider/1412848830.jpg'
-  }, {
-    project: 'De Vere Gardens',
-    year: 2013,
-    location: 'London',
-    architect: 'Squire',
-    contractor: 'Mace',
-    image : 'http://www.emstone.pl/userfiles/slider/1436169822.jpg'
-  }, {
-    project: 'One New Oxford Street',
-    year: 2015,
-    location: 'London',
-    architect: 'Orms',
-    contractor: 'Mace',
-    image: 'http://www.emstone.pl/userfiles/slider/1412857118.jpg'
-  }, {
-    project: 'Holland park Villas',
-    year: 2016,
-    location: 'London',
-    architect: 'S&P',
-    contractor: 'Mace',
-    image: 'http://newlondondevelopment.com/full/5550865569702d3fbc000000/1Elevated_Entrance.jpg'
-  }
-];
-
-
-/***/ }),
-/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(186)(undefined);
+exports = module.exports = __webpack_require__(185)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "body {\n  margin: 0;\n  box-sizing: border-box;\n}\n\n.panels {\n  display: flex;\n  /*justify-content: space-between;\n  align-items: stretch;\n  width: 100%;\n  height: 100%;\n  flex: 1 auto;*/\n  border: gold 2px solid;\n  min-height: 100vh;\n\n\n}\n\n.panel {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: center;\n  background-size: cover;\n  background-position: center;\n  text-align: center;\n  font-family: 'Roboto', sans-serif;\n  width: 100%;\n  height: 100vh;\n  overflow: hidden;\n  justify-content: space-between;\n  transition: flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11);\n}\n\n.panel.open {\n  flex: 5;\n}\n\n.panel h3 {\n  font-family: 'Roboto', sans-serif;\n  text-shadow: 1px 1px 0 black;\n  color: white;\n  background: rgb(54, 25, 25);\n  background: rgba(25, 25, 25, .5);\n  width: 100%;\n  padding: 10px 5px;\n  margin: 0;\n  transition: transform 0.5s;\n  transition-delay: 0.7s;\n}\n\n.info {\n  width: 100%;\n  background: rgb(54, 25, 25);\n  background: rgba(25, 25, 25, .5);\n  transition: transform 0.5s;\n  transition-delay: 0.7s;\n}\n\n.panel>*:first-child {\n  transform: translateY(-100%);\n}\n\n.panel.open-active>*:first-child {\n  transform: translateY(0);\n}\n\n.panel>*:last-child {\n  transform: translateY(100%);\n}\n\n.panel.open-active>*:last-child {\n  transform: translateY(0);\n}\n\n.panel1 {\n  background-image: url(http://www.emstone.pl/userfiles/slider/1460624536.jpg);\n}\n\n.panel2 {\n  background-image: url(http://www.emstone.pl/userfiles/slider/1412848830.jpg);\n}\n\n.panel3 {\n  background-image: url(http://www.emstone.pl/userfiles/slider/1460624536.jpg);\n}\n\n.panel4 {\n  background-image: url(http://www.emstone.pl/userfiles/slider/1412857118.jpg);\n}\n\n.panel5 {\n  background-image: url(http://newlondondevelopment.com/full/5550865569702d3fbc000000/1Elevated_Entrance.jpg);\n}\n\n@media all and (max-width:1000px) {\n  .panels {\n    flex-direction: column;\n\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  box-sizing: border-box;\n}\n\n.panels {\n  display: flex;\n  min-height: 100vh;\n}\n\n.panel {\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  align-items: center;\n  background-size: cover;\n  background-position: center;\n  text-align: center;\n  font-family: 'Roboto', sans-serif;\n  width: 100%;\n  height: 100vh;\n  overflow: hidden;\n  justify-content: space-between;\n  transition: flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11);\n  box-shadow:inset 0 0 0 3px rgba(255,255,255,0.2);\n}\n\n.panel.open {\n  flex: 3;\n}\n\n.panel h3 {\n  font-family: 'Quicksand', sans-serif;\n  text-shadow: 1px 1px 0 black;\n  color: white;\n  background: rgb(54, 25, 25);\n  background: rgba(25, 25, 25, .5);\n  width: 100%;\n  padding-top: 2vh;\n  padding-bottom: 1vh;\n  margin: 0;\n  transition: transform 0.5s;\n  transition-delay: 0.7s;\n}\n\n.panel>*:first-child {\n  transform: translateY(-100%);\n}\n\n.panel.open-active>*:first-child {\n  transform: translateY(0);\n}\n\n@media all and (max-width:700px) {\n  .panels {\n    flex-direction: column;\n  }\n  .panel {\n    height: 20px;\n  }\n  .panel.open {\n    flex: 6;\n  }\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, exports) {
 
 /*
